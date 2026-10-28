@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    show-sql: false
+
+  data:
+    redis:
+      host: ${REDIS_URL:redis}
+      port: ${REDIS_PORT:6379}
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google: 
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+
+jwt:
+  secret: ${JWT_SECRET:7b4cecaebb8de117f0c2547ed1db72882081a537}
+  access-exp: ${JWT_ACCESS_EXP:900000}
+  refresh-exp: ${JWT_REFRESH_EXP:604800000}
+
+auction:
+  min-time: ${AUCTION_MIN_TIME:7200} 
+  max-time: ${AUCTION_MAX_TIME:604800} 

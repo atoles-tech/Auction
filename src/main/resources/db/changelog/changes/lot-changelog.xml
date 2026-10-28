@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="lot-changelog-1" author="atoles">
+        
+        <createTable tableName="lots">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="title" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="categoty_id" type="BIGINT">
+                <constraints foreignKeyName="fk_category_lot"
+                             references="categories(id)" />
+            </column>
+
+            <column name="owner_id" type="BIGINT">
+                <constraints foreignKeyName="fk_user_lot"
+                             references="users(id)"/>
+            </column>
+
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="start_in" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            
+            <column name="end_in" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="start_price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="min_step" type="DOUBLE">
+            </column>
+
+            <column name="status" type="VARCHAR(15)">
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="lot-changelog-2" author="atoles">
+        <renameColumn tableName="lots" oldColumnName="categoty_id" newColumnName="category_id" />
+    </changeSet>
+
+</databaseChangeLog>

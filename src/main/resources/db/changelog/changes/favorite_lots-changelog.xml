@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="favorite_lots-changelog-1" author="atoles">
+        
+        <createTable tableName="favorite_lots">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="fk_user_favorite_lots"
+                             references="users(id)"/>
+            </column>
+
+            <column name="lot_id" type="BIGINT">
+                <constraints foreignKeyName="fk_lot_favorite_lots"
+                             references="lots(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

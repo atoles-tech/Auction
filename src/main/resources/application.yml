@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: auction
+
+  cache:
+    redis:
+      time-to-live: 10m
+      cache-null-values: false
+      
+  security:
+    oauth2:
+      client: 
+        registration:
+          google: 
+            scope: email, profile
+            redirect-uri: "http://localhost:8080/google/callback"
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    
+  liquibase:
+    change-log: classpath:db/changelog/db.master-changelog.xml
+
+server:
+  port: 8080

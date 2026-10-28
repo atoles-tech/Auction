@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+   <include file="db/changelog/changes/credential-changelog.xml"/>
+   <include file="db/changelog/changes/user-changelog.xml" />
+   <include file="db/changelog/changes/category-changelog.xml" />
+   <include file="db/changelog/changes/lot-changelog.xml" />
+   <include file="db/changelog/changes/favorite_lots-changelog.xml" />
+   <include file="db/changelog/changes/media_lot-changelog.xml" />
+   <include file="db/changelog/changes/bid-changelog.xml" />
+   <include file="db/changelog/changes/auto_bid-changelog.xml" />
+   <include file="db/changelog/changes/refresh_token-changelog.xml" />
+
+</databaseChangeLog>

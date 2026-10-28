@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: auction-db
+    environment:
+      POSTGRES_DB: auction
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+
+  service:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ACCESS_EXP=${JWT_ACCESS_EXP}
+      - JWT_REFRESH_EXP=${JWT_REFRESH_EXP}
+      - AUCTION_MIN_TIME=${AUCTION_MIN_TIME}
+      - AUCTION_MAX_TIME=${AUCTION_MAX_TIME}
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - REDIS_URL=${REDIS_URL}
+      - REDIS_PORT=${REDIS_PORT}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
